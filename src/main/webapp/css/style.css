@@ -1,13 +1,3 @@
-.pageHeader {
-    font-size: 1.5em;
-    border-bottom: grey solid 1px;
-    margin-bottom: 15px;
-}
-
-.departmentTable {
-    width: 50%;
-}
-
 table {
     border-collapse: collapse;
     width: 100%;
@@ -30,4 +20,32 @@ tr:nth-child(even) {
 th {
     background-color: #4CAF50;
     color: white;
+}
+
+.pageHeader {
+    font-size: 1.5em;
+    border-bottom: grey solid 1px;
+    margin-bottom: 15px;
+}
+
+.departmentTable {
+    width: 50%;
+}
+
+a:link, a:visited {
+    background-color: seagreen;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+a:hover, a:active {
+    background-color: darkgreen;
+}
+
+.addNewUser {
+    margin-bottom: 15px;
+    float: right;
 }
