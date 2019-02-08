@@ -1,11 +1,11 @@
 .pageHeader {
     font-size: 1.5em;
     border-bottom: grey solid 1px;
+    margin-bottom: 15px;
 }
 
 .departmentTable {
     width: 50%;
-    margin-top: 20px;
 }
 
 table {
