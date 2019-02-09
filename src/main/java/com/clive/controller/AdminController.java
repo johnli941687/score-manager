@@ -1,5 +1,6 @@
 package com.clive.controller;
 
+import com.clive.model.User;
 import com.clive.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,5 +19,12 @@ public class AdminController {
         model.addAttribute("users", adminService.getAllUsers());
 
         return "users";
+    }
+
+    @GetMapping("/user")
+    public String showCreateUserForm(Model model) {
+        model.addAttribute("user", new User());
+
+        return "user";
     }
 }

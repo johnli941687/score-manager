@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+</head>
+<body>
+<div class="pageHeader">Create New User</div>
+
+<div class="container">
+    <form th:object="${user}" th:action="@{/admin/user}" th:method="Post">
+        <div>
+            <label>User ID: <input type="text" th:value="${user.userId}" th:field="*{userId}"></label>
+        </div>
+        <div>
+            <label>User Name: <input type="text" th:value="${user.username}" th:field="*{username}"></label>
+        </div>
+        <div>
+            <label>Age: <input type="text" th:value="${user.age}" th:field="*{age}"></label>
+        </div>
+        <div>
+            <label>Gender: <select th:field="*{gender}">
+                <option th:value="Male" th:text="Male"></option>
+                <option th:value="Female" th:text="Female"></option>
+            </select>
+            </label>
+        </div>
+        <div>
+            <label>Department: <input type="text" th:value="${user.department}" th:field="*{department}"></label>
+        </div>
+        <div>
+            <label>Major: <input type="text" th:value="${user.major}" th:field="*{major}"></label>
+        </div>
+        <div>
+            <label>Phone: <input type="text" th:value="${user.phone}" th:field="*{phone}"></label>
+        </div>
+        <div>
+            <label>Email: <input type="text" th:value="${user.email}" th:field="*{email}"></label>
+        </div>
+
+        <div>
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</div>
+
+
+</body>
+</html>
