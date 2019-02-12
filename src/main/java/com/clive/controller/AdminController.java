@@ -1,11 +1,13 @@
 package com.clive.controller;
 
-import com.clive.model.User;
+import com.clive.model.UserData;
 import com.clive.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -23,8 +25,15 @@ public class AdminController {
 
     @GetMapping("/user")
     public String showCreateUserForm(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new UserData());
 
-        return "user";
+        return "create-user";
+    }
+
+    @PostMapping("/user")
+    public String createUser(Model model, @ModelAttribute("user") UserData userData) {
+        adminService.saveUser(userData);
+
+        return "redirect:/admin/users";
     }
 }

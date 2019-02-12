@@ -1,45 +1,50 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/main-layout">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+    <title>User Home Page</title>
 </head>
 <body>
-<div class="pageHeader">Users</div>
+<div layout:fragment="content">
+    <div class="pageHeader">Users</div>
 
-<div class="right-align">
-    <a th:href="@{/admin/user}" class="addNewUser">Add User</a>
+    <div class="userTable">
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>User Id</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Department</th>
+                <th>Major</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="userData : ${users}">
+                <td><a th:href="@{/admin/userData/{id}(id=${userData.id})}" th:text="${userData.id}"/></td>
+                <td th:text="${userData.userId}"/>
+                <td th:text="${userData.username}"/>
+                <td th:text="${userData.age}"/>
+                <td th:text="${userData.gender}"/>
+                <td th:text="${userData.department}"/>
+                <td th:text="${userData.major}"/>
+                <td th:text="${userData.phone}"/>
+                <td th:text="${userData.email}"/>
+                <td th:text="${userData.role}"/>
+                <td class="deleteAction"><i class="fas fa-trash-alt"></i></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
-
-<table>
-    <thead>
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Age</th>
-        <th>Gender</th>
-        <th>Department</th>
-        <th>Major</th>
-        <th>Phone</th>
-        <th>Email</th>
-        <th>Role</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="user : ${users}">
-        <td th:text="${user.userId}"/>
-        <td th:text="${user.username}"/>
-        <td th:text="${user.age}"/>
-        <td th:text="${user.gender}"/>
-        <td th:text="${user.department}"/>
-        <td th:text="${user.major}"/>
-        <td th:text="${user.phone}"/>
-        <td th:text="${user.email}"/>
-        <td th:text="${user.role}"/>
-    </tr>
-    </tbody>
-</table>
 </body>
 </html>

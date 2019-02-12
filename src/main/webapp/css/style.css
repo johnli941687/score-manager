@@ -1,3 +1,7 @@
+body {
+    background-color: lightgrey;
+    margin: 0;
+}
 table {
     border-collapse: collapse;
     width: 100%;
@@ -18,7 +22,7 @@ tr:nth-child(even) {
 }
 
 th {
-    background-color: #4CAF50;
+    background-color: #337ab7;
     color: white;
 }
 
@@ -26,23 +30,11 @@ th {
     font-size: 1.5em;
     border-bottom: grey solid 1px;
     margin-bottom: 15px;
+    padding: 5px 10px;
 }
 
 .departmentTable {
     width: 50%;
-}
-
-a:link, a:visited {
-    background-color: seagreen;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-}
-
-a:hover, a:active {
-    background-color: darkgreen;
 }
 
 .addNewUser {
@@ -50,7 +42,7 @@ a:hover, a:active {
     float: right;
 }
 
-.container {
+.addUserForm {
     width: 30%;
     margin-left: auto;
     margin-right: auto;
@@ -59,7 +51,7 @@ a:hover, a:active {
     border-radius: 5px;
 }
 
-input[type=text], select {
+input[type=text], input[type=password], select {
     font-size: 1.0em;
     width: 100%;
     padding: 12px 20px;
@@ -71,15 +63,109 @@ input[type=text], select {
 
 input[type=submit] {
     font-size: 1.0em;
-    background-color: #4CAF50;
+    background-color: #337ab7;
     color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
+    padding: 8px 20px;
     border: 0;
     border-radius: 4px;
     cursor: pointer;
 }
 
 input[type=submit]:hover {
-    background-color: #45a049;
+    background-color: #337ab7;
+}
+
+.deleteAction {
+    color: red;
+}
+
+header {
+    background-color: black;
+    margin-top: 0;
+}
+.general h1 {
+    color: white;
+    display: inline;
+    vertical-align: bottom;
+    margin-bottom: 5px;
+    padding-top: 0;
+}
+
+img.logo {
+    margin-top: 5px;
+    margin-right: 10px;
+    margin-left: 10px;
+    width: 80px;
+}
+
+.main {
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+}
+
+.main-menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px;
+    background-color: darkgreen;
+    color: white;
+}
+
+.main-menu ul li {
+    display: inline;
+    padding: 8px;
+}
+
+li a {
+    color: white;
+    padding: 8px 8px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background: green;
+}
+
+li.home {
+    font-size: 1.2em
+;
+}
+
+header {
+    height: 90px;
+}
+
+.userTable {
+    margin: 10px;
+}
+
+.login {
+    width: 30%;
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
+
+.login Form {
+    margin: 0 auto;
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.rememberMe {
+    margin-top: 10px;
+}
+
+.loginError {
+    margin-top: 5px;
+    color: red;
+}
+
+.logoutSuccess {
+    margin-top: 5px;
+    color: blue;
 }
