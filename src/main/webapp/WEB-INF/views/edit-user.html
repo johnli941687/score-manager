@@ -12,7 +12,7 @@
     <div class="pageHeader">Edit User: <span th:text="${userData.username}"/></div>
 
     <div class="addUserForm">
-        <form th:object="${userData}" th:action="@{/admin/userData/{userId}(userId = ${userData.userId})}" th:method="post">
+        <form th:object="${userData}" th:action="@{/admin/user/{userId}(userId = ${userData.userId})}" th:method="post">
             <div>
                 <label>User ID: <input type="text" th:value="${userData.userId}" th:field="*{userId}"></label>
             </div>

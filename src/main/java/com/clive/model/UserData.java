@@ -1,16 +1,23 @@
 package com.clive.model;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 public class UserData {
+    @NotEmpty
     private String userId;
+    @NotEmpty
     private String username;
     private String password;
+    @NotNull
     private Integer age;
     private String gender;
     private Department department;
     private Major major;
+    @NotEmpty
     private String phone;
+    @NotEmpty
     private String email;
     private Role role;
     private LocalDateTime createdOn;

@@ -9,7 +9,7 @@ $("#department").change(function () {
             majors.empty();
 
             for (var i = 0; i < data.length; i++) {
-                option = option + "<option value='" + data[i].majorNumber + " name='major'>" + data[i].majorName + "</option>";
+                option = option + "<option value=\"" + data[i].majorNumber + "\" name=\"major.majorNumber\">" + data[i].majorName + "</option>";
             }
             majors.append(option);
         },
@@ -18,3 +18,4 @@ $("#department").change(function () {
         }
     });
 });
+

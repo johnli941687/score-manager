@@ -5,11 +5,13 @@ import com.clive.repository.mapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.util.List;
+
+import static java.sql.Timestamp.valueOf;
+import static java.time.LocalDateTime.now;
 
 @Repository
 public class AdminRepository {
@@ -45,10 +47,10 @@ public class AdminRepository {
     }
 
     public void saveUser(UserData userData) {
-        String query = "INSERT INTO user (user_id, user_name, user_age, user_gender, department, major, phone, email) VALUES (?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO user (user_id, user_name, user_age, user_gender, phone, email, department_id, major_id, role_id, created_on) VALUES (?,?,?,?,?,?,?,?,?,?)";
 
-        jdbcTemplate.update(query, userData.getUserId(), userData.getUsername(), userData.getAge(), userData.getGender(), userData.getDepartment(),
-                userData.getMajor(), userData.getPhone(), userData.getEmail());
+        jdbcTemplate.update(query, userData.getUserId(), userData.getUsername(), userData.getAge(), userData.getGender(), userData.getPhone(), userData.getEmail(),
+                userData.getDepartment().getDepartmentNumber(), userData.getMajor().getMajorNumber(), userData.getRole().getRoleId(), valueOf(now()));
     }
 
     public User getUserByUsername(String username) {
@@ -96,7 +98,7 @@ public class AdminRepository {
         return jdbcTemplate.query(query, new DepartmentRowMapper());
     }
 
-    public List<Major> getMajorByDepartmentNumber(Integer departmentNumber){
+    public List<Major> getMajorByDepartmentNumber(Integer departmentNumber) {
         String query = "SELECT major_id, major_name FROM major WHERE dept_id = ?";
 
         return jdbcTemplate.query(query, new MajorRowMapper(), departmentNumber);
@@ -106,5 +108,24 @@ public class AdminRepository {
         String query = "SELECT role_id, role_name FROM role";
 
         return jdbcTemplate.query(query, new RoleRowMapper());
+    }
+
+    public void updateUserData(UserData userData, String userId) {
+        String query = "UPDATE user\n" +
+                "SET user_id            = ?,\n" +
+                "    user_name          = ?,\n" +
+                "    user_age           = ?,\n" +
+                "    user_gender        = ?,\n" +
+                "    user.phone         = ?,\n" +
+                "    user.email         = ?,\n" +
+                "    user.department_id = ?,\n" +
+                "    user.major_id      = ?,\n" +
+                "    user.role_id       = ?,\n" +
+                "    modified_on        = ?\n" +
+                "WHERE user_id = ?";
+
+        jdbcTemplate.update(query, userData.getUserId(), userData.getUsername(), userData.getAge(), userData.getGender(), userData.getPhone(), userData.getEmail(),
+                userData.getDepartment() == null ? null : userData.getDepartment().getDepartmentNumber(), userData.getMajor() == null ? null : userData.getMajor().getMajorNumber(),
+                userData.getRole().getRoleId(), valueOf(now()), userId);
     }
 }

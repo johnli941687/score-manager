@@ -5,6 +5,8 @@ import com.clive.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -19,8 +21,6 @@ public class AdminService {
     }
 
     public void saveUser(UserData userData) {
-//        Integer roleId = adminRepository.getRoleIdByRoleName(userData.getRole());
-
         adminRepository.saveUser(userData);
     }
 
@@ -49,6 +49,10 @@ public class AdminService {
     }
 
     public List<Major> getMajorsByDepartmentId(Integer departmentId) {
-        return adminRepository.getMajorByDepartmentNumber(departmentId);
+        return departmentId == null ? new ArrayList<>() : adminRepository.getMajorByDepartmentNumber(departmentId);
+    }
+
+    public void updateUserData(UserData userData, String userId) {
+        adminRepository.updateUserData(userData, userId);
     }
 }

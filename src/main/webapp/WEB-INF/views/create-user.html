@@ -15,15 +15,15 @@
         <form th:object="${userData}" th:action="@{/admin/user}" th:method="post">
             <div>
                 <label>User ID: <input type="text" th:value="${userData.userId}" th:field="*{userId}"></label>
-                <small th:errors="*{userId}" class="error errorMessage"></small>
+                <small th:errors="*{userId}" class="errorMessage"></small>
             </div>
             <div>
                 <label>User Name: <input type="text" th:value="${userData.username}" th:field="*{username}"></label>
-                <small th:errors="*{username}" class="error errorMessage"></small>
+                <small th:errors="*{username}" class="errorMessage"></small>
             </div>
             <div>
                 <label>Age: <input type="text" th:value="${userData.age}" th:field="*{age}"></label>
-                <small th:errors="*{age}" class="error errorMessage"></small>
+                <small th:errors="*{age}" class="errorMessage"></small>
             </div>
             <div>
                 <label for="gender">Gender:
@@ -44,17 +44,17 @@
                 <label for="major">Major:
                     <select id="major" th:field="*{major.majorNumber}">
                         <option th:name="major" value="-1"></option>
-                        <option th:each="major: ${majors}" name="major" th:value="${major.majorNumber}" th:text="${major.majorName}" th:selected="${major.majorNumber == userData.major.majorNumber}"></option>
+                        <!--<option th:each="major: ${majors}" name="major" th:value="${major.majorNumber}" th:text="${major.majorName}" th:selected="${major.majorNumber == userData.major.majorNumber}"></option>-->
                     </select>
                 </label>
             </div>
             <div>
                 <label>Phone: <input type="text" th:value="${userData.phone}" th:field="*{phone}"></label>
-                <small th:errors="*{phone}" class="error errorMessage"></small>
+                <small th:errors="*{phone}" class="errorMessage"></small>
             </div>
             <div>
                 <label>Email: <input type="text" th:value="${userData.email}" th:field="*{email}"></label>
-                <small th:errors="*{email}" class="error errorMessage"></small>
+                <small th:errors="*{email}" class="errorMessage"></small>
             </div>
             <div>
                 <label for="role">Role:

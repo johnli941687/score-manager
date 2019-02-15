@@ -4,6 +4,7 @@ import com.clive.model.Major;
 import com.clive.model.User;
 import com.clive.model.UserData;
 import com.clive.service.AdminService;
+import com.clive.support.AdminValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,8 @@ import java.util.List;
 public class AdminController {
     @Autowired
     private AdminService adminService;
+    @Autowired
+    private AdminValidator validator;
 
     @GetMapping("/users")
     public String getAllUsers(Model model) {
@@ -34,16 +37,18 @@ public class AdminController {
     @GetMapping("/user")
     public String showCreateUserForm(Model model) {
         model.addAttribute("userData", new UserData());
-        appendOtherInfo(model);
+        appendOtherInfo(model, null);
 
         return "create-user";
     }
 
     @PostMapping("/user")
-    public String createUser(Model model, @Valid @ModelAttribute UserData userData, BindingResult bindingResult) {
+    public String createUser(@Valid @ModelAttribute UserData userData, BindingResult bindingResult, Model model) {
+        validator.validateUserId(bindingResult, userData.getUserId());
+
         if (bindingResult.hasErrors()) {
             model.addAttribute("userData", userData);
-            appendOtherInfo(model);
+            appendOtherInfo(model, userData.getDepartment() == null ? null : userData.getDepartment().getDepartmentNumber());
 
             return "create-user";
         }
@@ -55,10 +60,27 @@ public class AdminController {
 
     @GetMapping("/user/{userId}")
     public String modifyUserForm(Model model, @PathVariable String userId) {
-        model.addAttribute("userData", adminService.getUserDataById(userId));
-        appendOtherInfo(model);
+        UserData userData = adminService.getUserDataById(userId);
+        model.addAttribute("userData", userData);
+        appendOtherInfo(model, userData.getDepartment() == null ? null : userData.getDepartment().getDepartmentNumber());
 
         return "edit-user";
+    }
+
+    @PostMapping("/user/{userId}")
+    public String modifyUser(Model model, @PathVariable String userId, @Valid @ModelAttribute UserData userData, BindingResult bindingResult) {
+        validator.validateUserId(bindingResult, userData.getUserId());
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("userData", userData);
+            appendOtherInfo(model, userData.getDepartment() == null ? null : userData.getDepartment().getDepartmentNumber());
+
+            return "edit-user";
+        }
+
+        adminService.updateUserData(userData, userId);
+
+        return "redirect:/admin/users";
     }
 
     @ResponseBody
@@ -67,10 +89,10 @@ public class AdminController {
         return adminService.getMajorsByDepartmentId(departmentId);
     }
 
-    private void appendOtherInfo(Model model) {
+    private void appendOtherInfo(Model model, Integer departmemtId) {
         model.addAttribute("genders", adminService.getGenders());
         model.addAttribute("departments", adminService.getAllDepartments());
-        model.addAttribute("majors", new ArrayList<Major>());
+        model.addAttribute("majors", adminService.getMajorsByDepartmentId(departmemtId));
         model.addAttribute("roles", adminService.getAllRoles());
     }
 }
