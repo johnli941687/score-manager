@@ -1,23 +1,25 @@
 package com.clive.model;
 
+import java.time.LocalDateTime;
+
 public class UserData {
-    private Integer id;
     private String userId;
     private String username;
     private String password;
     private Integer age;
     private String gender;
-    private String department;
-    private String major;
+    private Department department;
+    private Major major;
     private String phone;
     private String email;
-    private String role;
+    private Role role;
+    private LocalDateTime createdOn;
+    private LocalDateTime modifiedOn;
 
     public UserData() {
     }
 
-    public UserData(Integer id, String userId, String username, String password, Integer age, String gender, String department, String major, String phone, String email, String role) {
-        this.id = id;
+    public UserData(String userId, String username, String password, Integer age, String gender, Department department, Major major, String phone, String email, Role role, LocalDateTime createdOn, LocalDateTime modifiedOn) {
         this.userId = userId;
         this.username = username;
         this.password = password;
@@ -28,10 +30,8 @@ public class UserData {
         this.phone = phone;
         this.email = email;
         this.role = role;
-    }
-
-    public Integer getId() {
-        return id;
+        this.createdOn = createdOn;
+        this.modifiedOn = modifiedOn;
     }
 
     public String getUserId() {
@@ -54,11 +54,11 @@ public class UserData {
         return gender;
     }
 
-    public String getDepartment() {
+    public Department getDepartment() {
         return department;
     }
 
-    public String getMajor() {
+    public Major getMajor() {
         return major;
     }
 
@@ -70,12 +70,8 @@ public class UserData {
         return email;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public void setUserId(String userId) {
@@ -98,11 +94,11 @@ public class UserData {
         this.gender = gender;
     }
 
-    public void setDepartment(String department) {
+    public void setDepartment(Department department) {
         this.department = department;
     }
 
-    public void setMajor(String major) {
+    public void setMajor(Major major) {
         this.major = major;
     }
 
@@ -114,7 +110,23 @@ public class UserData {
         this.email = email;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
+    }
+
+    public LocalDateTime getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(LocalDateTime createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public LocalDateTime getModifiedOn() {
+        return modifiedOn;
+    }
+
+    public void setModifiedOn(LocalDateTime modifiedOn) {
+        this.modifiedOn = modifiedOn;
     }
 }

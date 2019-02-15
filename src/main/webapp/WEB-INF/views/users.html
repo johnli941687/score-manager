@@ -15,7 +15,6 @@
         <table>
             <thead>
             <tr>
-                <th>Id</th>
                 <th>User Id</th>
                 <th>Name</th>
                 <th>Age</th>
@@ -29,18 +28,17 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="userData : ${users}">
-                <td><a th:href="@{/admin/userData/{id}(id=${userData.id})}" th:text="${userData.id}"/></td>
-                <td th:text="${userData.userId}"/>
+            <tr th:each="userData : ${userDatas}">
+                <td><a th:href="@{/admin/user/{userId}(userId=${userData.userId})}" th:text="${userData.userId}"/></td>
                 <td th:text="${userData.username}"/>
                 <td th:text="${userData.age}"/>
                 <td th:text="${userData.gender}"/>
-                <td th:text="${userData.department}"/>
-                <td th:text="${userData.major}"/>
+                <td><span th:if="${userData.department}" th:text="${userData.department.departmentName}"></span></td>
+                <td><span th:if="${userData.major}" th:text="${userData.major.majorName}"></span></td>
                 <td th:text="${userData.phone}"/>
                 <td th:text="${userData.email}"/>
-                <td th:text="${userData.role}"/>
-                <td class="deleteAction"><i class="fas fa-trash-alt"></i></td>
+                <td><span th:if="${userData.role}" th:text="${userData.role.roleName}"></span></td>
+                <td><span th:if="${userData.userId != user.username}" class="deleteAction"><i class="fas fa-trash-alt"></i></span></td>
             </tr>
             </tbody>
         </table>

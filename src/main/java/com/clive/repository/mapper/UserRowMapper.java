@@ -8,6 +8,6 @@ import java.sql.SQLException;
 
 public class UserRowMapper implements RowMapper<User> {
     public User mapRow(ResultSet resultSet, int i) throws SQLException {
-        return new User(resultSet.getString("user_num"), resultSet.getString("password"), resultSet.getString("role_name"));
+        return new User(resultSet.getString("user_id"), resultSet.getString("password"), resultSet.getString("role_name"));
     }
 }

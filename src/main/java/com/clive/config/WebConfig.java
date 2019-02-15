@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.resource.PathResourceResolver;
 import org.thymeleaf.spring5.SpringTemplateEngine;
@@ -18,6 +19,7 @@ import static org.springframework.http.CacheControl.maxAge;
 
 @Configuration
 @EnableWebMvc
+@ComponentScan("com.clive")
 public class WebConfig implements WebMvcConfigurer {
     @Autowired
     private ApplicationContext applicationContext;

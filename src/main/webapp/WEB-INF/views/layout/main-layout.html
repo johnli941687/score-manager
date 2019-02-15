@@ -25,7 +25,7 @@
             <ul>
                 <li class="home"><a th:href="@{/home}">Home</a></li>
                 <li><a th:href="@{/admin/users}">Show All Users</a></li>
-                <li><a th:href="@{/admin/userData}">Add New User</a></li>
+                <li><a th:href="@{/admin/user}">Add New User</a></li>
             </ul>
         </nav>
     </div>
@@ -33,6 +33,18 @@
     <div class="content">
         <div layout:fragment="content"/>
     </div>
+
+    <footer>
+        <div class="contact-us">
+            <div layout:fragment="contact-us">
+                For technical assistance, call 1-800-888-8888<br/>
+                <a href="mailto:servicedesk@fhlbdm.com">servicedesk@student.edu</a>
+            </div>
+        </div>
+    </footer>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<div layout:fragment="scripts"></div>
 </body>
 </html>

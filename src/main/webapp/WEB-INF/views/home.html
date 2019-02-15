@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/main-layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div>
+        <div class="pageHeader" th:text="|Welcome: ${userData.username}|" />
+        <div class="currentDate" th:text="|Today: ${formattedCurrentDate}|" />
+    </div>
+
+    <div class="personalDetail">
+        <table>
+            <tbody>
+            <tr>
+                <td>User Id:</td>
+                <td th:text="${userData.userId}"></td>
+            </tr>
+            <tr>
+                <td>User Name:</td>
+                <td th:text="${userData.username}"></td>
+            </tr>
+            <tr>
+                <td>Age:</td>
+                <td th:text="${userData.age}"></td>
+            </tr>
+            <tr th:if="${userData.department}">
+                <td>Department:</td>
+                <td th:text="${userData.department.departmentName}"></td>
+            </tr>
+            <tr th:if="${userData.major}">
+                <td>Major:</td>
+                <td th:text="${userData.major.majorName}"></td>
+            </tr>
+            <tr>
+                <td>Phone Number:</td>
+                <td th:text="${userData.phone}"></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td th:text="${userData.email}"></td>
+            </tr>
+            <tr th:if="${userData.role}">
+                <td>Role:</td>
+                <td th:text="${userData.role.roleName}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

@@ -9,21 +9,18 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <div class="pageHeader">Create New User</div>
+    <div class="pageHeader">Edit User: <span th:text="${userData.username}"/></div>
 
     <div class="addUserForm">
-        <form th:object="${userData}" th:action="@{/admin/user}" th:method="post">
+        <form th:object="${userData}" th:action="@{/admin/userData/{userId}(userId = ${userData.userId})}" th:method="post">
             <div>
                 <label>User ID: <input type="text" th:value="${userData.userId}" th:field="*{userId}"></label>
-                <small th:errors="*{userId}" class="error errorMessage"></small>
             </div>
             <div>
                 <label>User Name: <input type="text" th:value="${userData.username}" th:field="*{username}"></label>
-                <small th:errors="*{username}" class="error errorMessage"></small>
             </div>
             <div>
                 <label>Age: <input type="text" th:value="${userData.age}" th:field="*{age}"></label>
-                <small th:errors="*{age}" class="error errorMessage"></small>
             </div>
             <div>
                 <label for="gender">Gender:
@@ -50,16 +47,14 @@
             </div>
             <div>
                 <label>Phone: <input type="text" th:value="${userData.phone}" th:field="*{phone}"></label>
-                <small th:errors="*{phone}" class="error errorMessage"></small>
             </div>
             <div>
                 <label>Email: <input type="text" th:value="${userData.email}" th:field="*{email}"></label>
-                <small th:errors="*{email}" class="error errorMessage"></small>
             </div>
             <div>
                 <label for="role">Role:
-                    <select id="role" th:field="*{role.roleId}">
-                        <option th:each="role: ${roles}" name="role"th:value="${role.roleId}" th:text="${role.roleName}" th:selected="${role.roleId == userData.role.roleId}"></option>
+                    <select th:field="*{role.roleId}">
+                        <option th:each="role: ${roles}" name="role" id="role" th:value="${role.roleId}" th:text="${role.roleName}" th:selected="${role.roleId == userData.role.roleId}"></option>
                     </select>
                 </label>
             </div>
@@ -68,9 +63,6 @@
             </div>
         </form>
     </div>
-</div>
-<div layout:fragment="scripts">
-    <script th:src="@{/js/admin.js}"></script>
 </div>
 </body>
 </html>

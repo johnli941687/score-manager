@@ -44,17 +44,15 @@ th {
 
 .addUserForm {
     width: 30%;
-    margin-left: auto;
-    margin-right: auto;
     background-color: #f2f2f2;
     padding: 20px;
     border-radius: 5px;
 }
 
 input[type=text], input[type=password], select {
-    font-size: 1.0em;
+    font-size: 0.9em;
     width: 100%;
-    padding: 12px 20px;
+    padding: 4px 6px;
     margin: 8px 0;
     display: inline-block;
     border-radius: 4px;
@@ -62,7 +60,8 @@ input[type=text], input[type=password], select {
 }
 
 input[type=submit] {
-    font-size: 1.0em;
+    margin-top: 5px;
+    font-size: 0.9em;
     background-color: #337ab7;
     color: white;
     padding: 8px 20px;
@@ -168,4 +167,36 @@ header {
 .logoutSuccess {
     margin-top: 5px;
     color: blue;
+}
+
+.currentDate {
+    display: inline;
+    float: right;
+    margin-right: 10px;
+}
+
+.content {
+    background: white;
+    margin: 5px;
+}
+
+.detailLabel {
+    width: 50px;
+}
+
+footer {
+    margin: 10px 0;
+    padding: 10px 0;
+    border-top: 2px solid lightgrey;
+    text-align: center;
+    color: grey;
+    border-radius: 0 0 6px 6px;
+}
+
+.contact-us {
+    border-bottom-left-radius: 10px;
+}
+
+.personalDetail {
+    width: 30%;
 }

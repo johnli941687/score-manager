@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @PropertySource("classpath:application.properties")
-@ComponentScan("com.clive")
+@ComponentScan(basePackages = {"com.clive"})
 public class RootConfig {
 
     @Autowired
