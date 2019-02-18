@@ -65,4 +65,16 @@ public class User implements UserDetails {
     public void setRole(String role) {
         this.role = role;
     }
+
+    public boolean isAdmin() {
+        return role.equals("Administrator");
+    }
+
+    public boolean isTeacher() {
+        return role.equals("Teacher");
+    }
+
+    public boolean isStudent() {
+        return role.equals("Student");
+    }
 }

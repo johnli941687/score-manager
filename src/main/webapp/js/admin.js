@@ -18,4 +18,3 @@ $("#department").change(function () {
         }
     });
 });
-

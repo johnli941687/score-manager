@@ -1,5 +1,7 @@
 package com.clive.config;
 
+import com.clive.filter.MenuFilter;
+import com.clive.service.MenuService;
 import com.clive.support.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -10,12 +12,17 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
+    @Autowired
+    private MenuService menuService;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -30,6 +37,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         authenticationProvider.setPasswordEncoder(passwordEncoder());
 
         return authenticationProvider;
+    }
+
+    @Bean
+    public MenuFilter menuFilter() {
+        MenuFilter menuFilter = new MenuFilter();
+        menuFilter.setMenuService(menuService);
+
+        return menuFilter;
     }
 
     @Override
@@ -59,7 +74,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .defaultSuccessUrl("/home")
                 .and()
+                .addFilterBefore(menuFilter(), UsernamePasswordAuthenticationFilter.class)
                 .logout()
                 .logoutSuccessUrl("/login");
+
     }
 }

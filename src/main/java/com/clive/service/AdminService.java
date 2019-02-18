@@ -55,4 +55,8 @@ public class AdminService {
     public void updateUserData(UserData userData, String userId) {
         adminRepository.updateUserData(userData, userId);
     }
+
+    public void deleteUserByUserId(String userId) {
+        adminRepository.deleteUserDataByUserId(userId);
+    }
 }

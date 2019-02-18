@@ -128,4 +128,10 @@ public class AdminRepository {
                 userData.getDepartment() == null ? null : userData.getDepartment().getDepartmentNumber(), userData.getMajor() == null ? null : userData.getMajor().getMajorNumber(),
                 userData.getRole().getRoleId(), valueOf(now()), userId);
     }
+
+    public void deleteUserDataByUserId(String userId) {
+        String query = "DELETE FROM user WHERE user_id = ?";
+
+        jdbcTemplate.update(query, userId);
+    }
 }

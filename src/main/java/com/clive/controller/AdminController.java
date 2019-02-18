@@ -83,6 +83,13 @@ public class AdminController {
         return "redirect:/admin/users";
     }
 
+    @GetMapping("/user/{userId}/delete")
+    public String deleteUser(@PathVariable String userId) {
+        adminService.deleteUserByUserId(userId);
+
+        return "redirect:/admin/users";
+    }
+
     @ResponseBody
     @GetMapping(value = "/department/{departmentId}/majors", produces = "application/json")
     public List<Major> getMajors(@PathVariable Integer departmentId) {
