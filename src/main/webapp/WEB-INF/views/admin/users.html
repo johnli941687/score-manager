@@ -38,7 +38,7 @@
                 <td th:text="${userData.phone}"/>
                 <td th:text="${userData.email}"/>
                 <td><span th:if="${userData.role}" th:text="${userData.role.roleName}"></span></td>
-                <td><span th:if="${userData.userId != user.username}" class="deleteAction">
+                <td><span th:if="${userData.userId != user.username}" class="action">
                     <a th:href="@{/admin/user/{userId}/delete(userId=${userData.userId})}"><i class="fas fa-trash-alt"></i></a>
                 </span>
                 </td>

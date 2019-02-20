@@ -13,7 +13,7 @@ public class AdminValidator {
     private AdminRepository adminRepository;
 
     public void validateUserId(BindingResult bindingResult, String userId) {
-        if (adminRepository.getUserDataByUsername(userId) != null) {
+        if (adminRepository.getUserDataByUserId(userId) != null) {
             bindingResult.addError(new FieldError("userData", "userId", "user id already exists"));
         }
     }

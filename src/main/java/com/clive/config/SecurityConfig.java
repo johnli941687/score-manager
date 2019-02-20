@@ -22,7 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
     @Autowired
-    private MenuService menuService;
+    private MenuFilter menuFilter;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -37,14 +37,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         authenticationProvider.setPasswordEncoder(passwordEncoder());
 
         return authenticationProvider;
-    }
-
-    @Bean
-    public MenuFilter menuFilter() {
-        MenuFilter menuFilter = new MenuFilter();
-        menuFilter.setMenuService(menuService);
-
-        return menuFilter;
     }
 
     @Override
@@ -74,7 +66,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .defaultSuccessUrl("/home")
                 .and()
-                .addFilterBefore(menuFilter(), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(menuFilter, UsernamePasswordAuthenticationFilter.class)
                 .logout()
                 .logoutSuccessUrl("/login");
 

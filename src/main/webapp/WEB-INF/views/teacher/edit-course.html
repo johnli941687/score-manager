@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/main-layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Course</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="pageHeader">Edit Course</div>
+
+    <div class="addUserForm">
+        <form th:object="${course}" th:action="@{/teacher/course/{courseId}(courseId = ${course.id})}" th:method="post">
+            <div>
+                <label>Course Name: <input type="text" th:value="${course.name}" th:field="*{name}"></label>
+                <small th:errors="*{name}" class="errorMessage"></small>
+            </div>
+            <div>
+                <label>Course Credit: <input type="text" th:value="${course.credit}" th:field="*{credit}"></label>
+                <small th:errors="*{credit}" class="errorMessage"></small>
+            </div>
+            <div>
+                <label>Course Hours: <input type="text" th:value="${course.hours}" th:field="*{hours}"></label>
+                <small th:errors="*{hours}" class="errorMessage"></small>
+            </div>
+            <div>
+                <label>Semester:
+                    <select th:field="*{semester.id}">
+                        <option th:each="semester: ${semesters}" th:value="${semester.id}" th:text="${semester.name}" th:selected="${semester.id == course.semester.id}"></option>
+                    </select>
+                </label>
+            </div>
+            <div>
+                <label>Teacher:
+                    <input th:field="*{teacher.username}" type="text" th:value="${course.teacher.username}" readonly>
+                </label>
+            </div>
+            <div>
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+</div>
+<div layout:fragment="scripts">
+    <script th:src="@{/js/admin.js}"></script>
+</div>
+</body>
+</html>

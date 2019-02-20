@@ -74,14 +74,36 @@ input[type=submit]:hover {
     background-color: #337ab7;
 }
 
-deleteAction a {
+input[type="text"]:read-only {
+    background: #dddddd;
+}
+
+a.deleteAction {
     color: red;
 }
-deleteAction a:hover{
+
+a.gradeAction {
+    color: blue;
+}
+
+a.deleteAction:hover{
     color: darkred;
 }
-deleteAction a:visited {
+
+a.gradeAction:hover {
+    color: darkblue;
+}
+
+a.deleteAction:visited {
     color: red;
+}
+
+a.gradeAction:visited {
+    color: blue;
+}
+
+a.deleteAction, a.gradeAction {
+    padding-right: 5px;
 }
 
 header {

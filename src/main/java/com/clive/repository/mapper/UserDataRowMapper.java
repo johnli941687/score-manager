@@ -17,7 +17,6 @@ public class UserDataRowMapper implements RowMapper<UserData> {
     public UserData mapRow(ResultSet resultSet, int i) throws SQLException {
         String userId = resultSet.getString("user_id");
         String username = resultSet.getString("user_name");
-        String password = resultSet.getString("password");
         Integer age = resultSet.getInt("user_age");
         String gender = resultSet.getString("user_gender");
         String phone = resultSet.getString("phone");
@@ -28,7 +27,7 @@ public class UserDataRowMapper implements RowMapper<UserData> {
         Major major = createMajor(resultSet.getInt("major_id"), resultSet.getString("major_name"));
         Role role = createRole(resultSet.getInt("role_id"), resultSet.getString("role_name"));
 
-        return new UserData(userId, username, password, age, gender, department, major, phone, email, role, createTimestamp, modifyTimestamp);
+        return new UserData(userId, username, null, age, gender, department, major, phone, email, role, createTimestamp, modifyTimestamp);
     }
 
     private LocalDateTime convertSqlToLocal(Timestamp createdOn) {

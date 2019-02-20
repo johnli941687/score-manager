@@ -5,7 +5,6 @@ import com.clive.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,11 +24,11 @@ public class AdminService {
     }
 
     public User getUserByUsername(String username) {
-        return adminRepository.getUserByUsername(username);
+        return adminRepository.getUserByUserId(username);
     }
 
     public UserData getUserDataByUsername(String username) {
-        return adminRepository.getUserDataByUsername(username);
+        return adminRepository.getUserDataByUserId(username);
     }
 
     public List<Department> getAllDepartments() {
@@ -45,7 +44,7 @@ public class AdminService {
     }
 
     public UserData getUserDataById(String userId) {
-        return adminRepository.getUserDataByUsername(userId);
+        return adminRepository.getUserDataByUserId(userId);
     }
 
     public List<Major> getMajorsByDepartmentId(Integer departmentId) {

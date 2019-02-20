@@ -31,7 +31,7 @@ public class AdminController {
         model.addAttribute("user", user);
         model.addAttribute("userDatas", adminService.getAllUserData());
 
-        return "users";
+        return "admin/users";
     }
 
     @GetMapping("/user")
@@ -39,7 +39,7 @@ public class AdminController {
         model.addAttribute("userData", new UserData());
         appendOtherInfo(model, null);
 
-        return "create-user";
+        return "admin/create-user";
     }
 
     @PostMapping("/user")
@@ -50,7 +50,7 @@ public class AdminController {
             model.addAttribute("userData", userData);
             appendOtherInfo(model, userData.getDepartment() == null ? null : userData.getDepartment().getDepartmentNumber());
 
-            return "create-user";
+            return "admin/create-user";
         }
 
         adminService.saveUser(userData);
@@ -64,7 +64,7 @@ public class AdminController {
         model.addAttribute("userData", userData);
         appendOtherInfo(model, userData.getDepartment() == null ? null : userData.getDepartment().getDepartmentNumber());
 
-        return "edit-user";
+        return "admin/edit-user";
     }
 
     @PostMapping("/user/{userId}")
@@ -75,7 +75,7 @@ public class AdminController {
             model.addAttribute("userData", userData);
             appendOtherInfo(model, userData.getDepartment() == null ? null : userData.getDepartment().getDepartmentNumber());
 
-            return "edit-user";
+            return "admin/edit-user";
         }
 
         adminService.updateUserData(userData, userId);
