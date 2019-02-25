@@ -86,6 +86,10 @@ a.gradeAction {
     color: blue;
 }
 
+a.enrollAction {
+    color: green;
+}
+
 a.deleteAction:hover{
     color: darkred;
 }
@@ -94,12 +98,20 @@ a.gradeAction:hover {
     color: darkblue;
 }
 
+a.enrollAction:hover {
+    color: darkgreen;
+}
+
 a.deleteAction:visited {
     color: red;
 }
 
 a.gradeAction:visited {
     color: blue;
+}
+
+a.enrollAction:visited {
+    color: green;
 }
 
 a.deleteAction, a.gradeAction {
@@ -272,4 +284,8 @@ footer {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+span i.enrolled {
+    color: orange;
 }

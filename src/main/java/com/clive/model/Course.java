@@ -16,6 +16,7 @@ public class Course {
     private Integer hours;
     private UserData teacher;
     private Semester semester;
+    private boolean registered;
 
     public Course() {
     }
@@ -75,5 +76,13 @@ public class Course {
 
     public void setSemester(Semester semester) {
         this.semester = semester;
+    }
+
+    public boolean isRegistered() {
+        return registered;
+    }
+
+    public void setRegistered(boolean registered) {
+        this.registered = registered;
     }
 }

@@ -1,6 +1,8 @@
 package com.clive.controller;
 
 import com.clive.model.Course;
+import com.clive.model.User;
+import com.clive.model.UserData;
 import com.clive.service.TeacherService;
 import com.clive.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/teacher")
@@ -65,8 +68,25 @@ public class TeacherController {
 
             return "teacher/edit-course";
         }
+        course.setId(courseId);
         teacherService.updateCourse(course);
 
         return "redirect:/teacher/courses";
     }
+
+    @GetMapping("/course/{courseId}/delete")
+    public String deleteCourse(@PathVariable Integer courseId) {
+        teacherService.deleteCourseById(courseId);
+
+        return "redirect:/teacher/courses";
+    }
+
+    @GetMapping("/course/{courseId}/grade")
+    public String inputGrade(Model model, @PathVariable Integer courseId) {
+        List<UserData> studentsForCourse = teacherService.getStudentForCourse(courseId);
+
+        return null;
+    }
+
+
 }

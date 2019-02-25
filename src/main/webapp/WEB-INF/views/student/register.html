@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/main-layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Course Register Page</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="pageHeader">Register Course</div>
+
+    <div class="userTable">
+        <table>
+            <thead>
+            <tr>
+                <th>Course</th>
+                <th>Credit</th>
+                <th>Hours</th>
+                <th>Semester</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Teacher</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="course : ${courses}">
+                <td th:text="${course.name}"></td>
+                <td th:text="${course.credit}"/>
+                <td th:text="${course.hours}"/>
+                <td th:text="${course.semester.name}"/>
+                <td th:text="${course.semester.formattedStartDate}"/>
+                <td th:text="${course.semester.formattedEndDate}"/>
+                <td th:text="${course.teacher.username}" />
+                <td>
+                    <a th:unless="${course.registered}" class="enrollAction" th:href="@{/student/register/course/{courseId}(courseId=${course.id})}"><i class="fas fa-cart-plus"></i></a>
+                    <span th:if="${course.registered}"><i class="enrolled fa fa-check" aria-hidden="true"></i></span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div layout:fragment="scripts">
+    <script th:src="@{/js/admin.js}"></script>
+</div>
+</body>
+</html>

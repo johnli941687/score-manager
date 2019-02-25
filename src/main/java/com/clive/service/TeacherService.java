@@ -2,6 +2,7 @@ package com.clive.service;
 
 import com.clive.model.Course;
 import com.clive.model.Semester;
+import com.clive.model.User;
 import com.clive.model.UserData;
 import com.clive.repository.AdminRepository;
 import com.clive.repository.TeacherRepository;
@@ -56,5 +57,13 @@ public class TeacherService {
         course.setTeacher(adminRepository.getUserDataByUsername(course.getTeacher().getUsername()));
 
         teacherRepository.updateCourse(course);
+    }
+
+    public void deleteCourseById(Integer courseId) {
+        teacherRepository.deleteCourseById(courseId);
+    }
+
+    public List<UserData> getStudentForCourse(Integer courseId) {
+        return teacherRepository.getAllStudentsForCourse(courseId);
     }
 }

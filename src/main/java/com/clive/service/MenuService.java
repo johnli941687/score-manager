@@ -24,6 +24,7 @@ public class MenuService {
         }
 
         if (user.isStudent()) {
+            items.add(new MenuItem("Register Course", "/student/register"));
             items.add(new MenuItem("Show All Courses", "/student/courses"));
             items.add(new MenuItem("Show My Scores", "/student/scores"));
         }

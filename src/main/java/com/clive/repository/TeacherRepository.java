@@ -2,8 +2,11 @@ package com.clive.repository;
 
 import com.clive.model.Course;
 import com.clive.model.Semester;
+import com.clive.model.User;
+import com.clive.model.UserData;
 import com.clive.repository.mapper.CourseRowMapper;
 import com.clive.repository.mapper.SemesterRowMapper;
+import com.clive.repository.mapper.UserDataRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -85,6 +88,38 @@ public class TeacherRepository {
                 "    teacher_id    = ?\n" +
                 "WHERE course_id = ?";
 
-        jdbcTemplate.update(query, course.getName(), course.getCredit(), course.getHours(), course.getSemester().getId(), course.getTeacher().getUserId());
+        jdbcTemplate.update(query, course.getName(), course.getCredit(), course.getHours(), course.getSemester().getId(), course.getTeacher().getUserId(), course.getId());
+    }
+
+    public void deleteCourseById(Integer courseId) {
+        String query = "DELETE FROM course WHERE course_id = ?";
+
+        jdbcTemplate.update(query, courseId);
+    }
+
+    public List<UserData> getAllStudentsForCourse(Integer courseId) {
+        String query = "SELECT user.user_id,\n" +
+                "       user.user_name,\n" +
+                "       user.user_age,\n" +
+                "       user.user_gender,\n" +
+                "       user.phone,\n" +
+                "       user.email,\n" +
+                "       user.created_on,\n" +
+                "       user.modified_on,\n" +
+                "       department.dept_id,\n" +
+                "       department.dept_name,\n" +
+                "       major.major_id,\n" +
+                "       major.major_name,\n" +
+                "       role.role_id,\n" +
+                "       role.role_name\n" +
+                "FROM course\n" +
+                "       INNER JOIN course_enrollment ON course.course_id = course_enrollment.course_id\n" +
+                "       INNER JOIN user ON course_enrollment.student_id = user.user_id\n" +
+                "       LEFT JOIN major ON user.major_id = major.major_id\n" +
+                "       LEFT JOIN department ON user.department_id = department.dept_id\n" +
+                "       LEFT JOIN role ON user.role_id = role.role_id\n" +
+                "WHERE course.course_id = ?";
+
+        return jdbcTemplate.query(query, new UserDataRowMapper(), courseId);
     }
 }
