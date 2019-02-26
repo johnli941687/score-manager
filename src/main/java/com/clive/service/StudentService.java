@@ -26,4 +26,12 @@ public class StudentService {
     public void registerCourse(String username, Integer courseId) {
         studentRepository.registerCourse(username, courseId);
     }
+
+    public Course getCourseByCourseId(Integer courseId) {
+        return studentRepository.getCourseByCourseId(courseId);
+    }
+
+    public Integer add(Integer number1, Integer number2) {
+        return number1 + number2;
+    }
 }

@@ -53,7 +53,7 @@ public class AdminRepository {
     }
 
     public User getUserByUserId(String username) {
-        String query = "SELECT user_id, password, role_name FROM user INNER JOIN role ON user.role_id = role.role_id WHERE user_id = ?;";
+        String query = "SELECT user.user_id, user.password, role.role_name FROM user INNER JOIN role ON user.role_id = role.role_id WHERE user.user_id = ?;";
 
         try {
             return jdbcTemplate.queryForObject(query, new UserRowMapper(), username);

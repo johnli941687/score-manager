@@ -49,7 +49,7 @@ th {
     border-radius: 5px;
 }
 
-input[type=text], input[type=password], select {
+input[type=text], input[type=password], select, textarea {
     font-size: 0.9em;
     width: 100%;
     padding: 4px 6px;
@@ -288,4 +288,10 @@ footer {
 
 span i.enrolled {
     color: orange;
+}
+
+.courseTitle {
+    font-size: 1.2em;
+    font-weight: bold;
+    padding-left: 10px;
 }

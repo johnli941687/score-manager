@@ -6,6 +6,8 @@ import com.clive.model.UserData;
 import com.clive.service.AdminService;
 import com.clive.support.AdminValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
+@PreAuthorize("hasAnyAuthority('Administrator')")
 public class AdminController {
     @Autowired
     private AdminService adminService;

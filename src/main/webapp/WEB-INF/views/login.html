@@ -24,15 +24,8 @@
                     <input type="checkbox" checked="checked" name="remember"> Remember me
                 </label>
             </div>
-            <div>
-                <div>
-                    <div th:if="${param.error}" class="loginError">
-                        Invalid username and password
-                    </div>
-                    <div th:if="${param.logout}" class="logoutSuccess">
-                        You have been logged out
-                    </div>
-                </div>
+            <div th:if="${param.error}" class="loginError">
+                Invalid username and password
             </div>
         </form>
     </div>

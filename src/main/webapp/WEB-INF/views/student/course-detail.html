@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/main-layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Course Detail</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="pageHeader">Course Detail</div>
+
+    <div class="courseTitle" th:text="${course.name}"></div>
+
+    <div
+</div>
+<div layout:fragment="scripts">
+    <script th:src="@{/js/admin.js}"></script>
+</div>
+</body>
+</html>

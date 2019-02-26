@@ -18,6 +18,10 @@ public class CourseRowMapper implements RowMapper<Course> {
         String courseName = resultSet.getString("course_name");
         Integer courseCredit = resultSet.getInt("course_credit");
         Integer courseHours = resultSet.getInt("course_hours");
+        String overview = resultSet.getString("overview");
+        String audience = resultSet.getString("audience");
+        String prerequisites = resultSet.getString("prerequisites");
+        String outline = resultSet.getString("outline");
         Integer semesterId = resultSet.getInt("semester_id");
         String semesterName = resultSet.getString("semester_name");
         LocalDate startDate = convertSqlToLocalDate(resultSet.getDate("start_date"));
@@ -30,7 +34,7 @@ public class CourseRowMapper implements RowMapper<Course> {
         teacher.setUserId(userId);
         teacher.setUsername(username);
 
-        return new Course(courseId, courseName, courseCredit, courseHours, teacher, semester);
+        return new Course(courseId, courseName, courseCredit, courseHours, teacher, semester, overview, audience, prerequisites, outline);
     }
 
     private LocalDate convertSqlToLocalDate(Date date) {

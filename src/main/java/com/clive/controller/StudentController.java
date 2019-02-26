@@ -35,4 +35,11 @@ class StudentController {
 
         return "redirect:/student/register";
     }
+
+    @GetMapping("/course/{courseId}")
+    public String showCourseDetail(Model model, @PathVariable Integer courseId) {
+        model.addAttribute("course", studentService.getCourseByCourseId(courseId));
+
+        return "student/course-detail";
+    }
 }

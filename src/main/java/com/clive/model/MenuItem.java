@@ -1,8 +1,8 @@
 package com.clive.model;
 
 public class MenuItem {
-    String menuTitle;
-    String menuUrl;
+    private String menuTitle;
+    private String menuUrl;
 
     public MenuItem(String menuTitle, String menuUrl) {
         this.menuTitle = menuTitle;

@@ -16,18 +16,26 @@ public class Course {
     private Integer hours;
     private UserData teacher;
     private Semester semester;
+    private String overview;
+    private String audience;
+    private String prerequisites;
+    private String outline;
     private boolean registered;
 
     public Course() {
     }
 
-    public Course(Integer id, String name, Integer credit, Integer hours, UserData teacher, Semester semester) {
+    public Course(Integer id, String name, Integer credit, Integer hours, UserData teacher, Semester semester, String overview, String audience, String prerequisites, String outline) {
         this.id = id;
         this.name = name;
         this.credit = credit;
         this.hours = hours;
         this.teacher = teacher;
         this.semester = semester;
+        this.overview = overview;
+        this.audience = audience;
+        this.prerequisites = prerequisites;
+        this.outline = outline;
     }
 
     public Integer getId() {
@@ -84,5 +92,37 @@ public class Course {
 
     public void setRegistered(boolean registered) {
         this.registered = registered;
+    }
+
+    public String getOverview() {
+        return overview;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
+
+    public String getAudience() {
+        return audience;
+    }
+
+    public void setAudience(String audience) {
+        this.audience = audience;
+    }
+
+    public String getPrerequisites() {
+        return prerequisites;
+    }
+
+    public void setPrerequisites(String prerequisites) {
+        this.prerequisites = prerequisites;
+    }
+
+    public String getOutline() {
+        return outline;
+    }
+
+    public void setOutline(String outline) {
+        this.outline = outline;
     }
 }

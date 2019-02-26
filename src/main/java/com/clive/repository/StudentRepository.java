@@ -4,6 +4,7 @@ import com.clive.model.Course;
 import com.clive.model.Semester;
 import com.clive.repository.mapper.CourseRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -26,6 +27,10 @@ public class StudentRepository {
                 "       course.course_name,\n" +
                 "       course.course_credit,\n" +
                 "       course.course_hours,\n" +
+                "       course.overview,\n" +
+                "       course.audience,\n" +
+                "       course.prerequisites,\n" +
+                "       course.outline,\n" +
                 "       semester.semester_id,\n" +
                 "       semester.semester_name,\n" +
                 "       semester.start_date,\n" +
@@ -50,6 +55,10 @@ public class StudentRepository {
                 "       course.course_name,\n" +
                 "       course.course_credit,\n" +
                 "       course.course_hours,\n" +
+                "       course.overview,\n" +
+                "       course.audience,\n" +
+                "       course.prerequisites,\n" +
+                "       course.outline,\n" +
                 "       semester.semester_id,\n" +
                 "       semester.semester_name,\n" +
                 "       semester.start_date,\n" +
@@ -63,5 +72,32 @@ public class StudentRepository {
                 "WHERE course_enrollment.student_id = ?;";
 
         return jdbcTemplate.query(query, new CourseRowMapper(), username);
+    }
+
+    public Course getCourseByCourseId(Integer courseId) {
+        String query = "SELECT course.course_id,\n" +
+                "       course.course_name,\n" +
+                "       course.course_credit,\n" +
+                "       course.course_hours,\n" +
+                "       course.overview,\n" +
+                "       course.audience,\n" +
+                "       course.prerequisites,\n" +
+                "       course.outline,\n" +
+                "       semester.semester_id,\n" +
+                "       semester.semester_name,\n" +
+                "       semester.start_date,\n" +
+                "       semester.end_date,\n" +
+                "       user.user_id,\n" +
+                "       user.user_name\n" +
+                "FROM course\n" +
+                "       LEFT JOIN user ON course.teacher_id = user.user_id\n" +
+                "       LEFT JOIN semester ON course.semester_id = semester.semester_id\n" +
+                "WHERE course.course_id = ?;";
+
+        try {
+            return jdbcTemplate.queryForObject(query, new CourseRowMapper(), courseId);
+        } catch (EmptyResultDataAccessException e) {
+            return null;
+        }
     }
 }

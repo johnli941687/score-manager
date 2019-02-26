@@ -36,6 +36,10 @@ public class TeacherRepository {
                 "       course.course_name,\n" +
                 "       course.course_credit,\n" +
                 "       course.course_hours,\n" +
+                "       course.overview,\n" +
+                "       course.audience,\n" +
+                "       course.prerequisites,\n" +
+                "       course.outline,\n" +
                 "       semester.semester_id,\n" +
                 "       semester.semester_name,\n" +
                 "       semester.start_date,\n" +
@@ -51,9 +55,9 @@ public class TeacherRepository {
     }
 
     public void saveCourse(Course course) {
-        String query = "INSERT INTO course (course_name, course_credit, course_hours, teacher_id, semester_id) VALUES (?,?,?,?,?)";
+        String query = "INSERT INTO course (course_name, course_credit, course_hours, overview, audience, prerequisites, outline, teacher_id, semester_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
-        jdbcTemplate.update(query, course.getName(), course.getCredit(), course.getHours(), course.getTeacher().getUserId(), course.getSemester().getId());
+        jdbcTemplate.update(query, course.getName(), course.getCredit(), course.getHours(), course.getOverview(), course.getAudience(), course.getPrerequisites(), course.getOutline(), course.getTeacher().getUserId(), course.getSemester().getId());
     }
 
     public Course getCourseById(Integer courseId) {
@@ -61,6 +65,10 @@ public class TeacherRepository {
                 "       course.course_name,\n" +
                 "       course.course_credit,\n" +
                 "       course.course_hours,\n" +
+                "       course.overview,\n" +
+                "       course.audience,\n" +
+                "       course.prerequisites,\n" +
+                "       course.outline,\n" +
                 "       semester.semester_id,\n" +
                 "       semester.semester_name,\n" +
                 "       semester.start_date,\n" +
@@ -84,11 +92,17 @@ public class TeacherRepository {
                 "SET course_name   = ?,\n" +
                 "    course_credit = ?,\n" +
                 "    course_hours  = ?,\n" +
+                "    overview  = ?,\n" +
+                "    audience  = ?,\n" +
+                "    prerequisites  = ?,\n" +
+                "    outline  = ?,\n" +
                 "    semester_id   = ?,\n" +
                 "    teacher_id    = ?\n" +
                 "WHERE course_id = ?";
 
-        jdbcTemplate.update(query, course.getName(), course.getCredit(), course.getHours(), course.getSemester().getId(), course.getTeacher().getUserId(), course.getId());
+        jdbcTemplate.update(query, course.getName(), course.getCredit(), course.getHours(), course.getOverview(),
+                course.getAudience(), course.getPrerequisites(), course.getOutline(), course.getSemester().getId(),
+                course.getTeacher().getUserId(), course.getId());
     }
 
     public void deleteCourseById(Integer courseId) {

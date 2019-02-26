@@ -25,6 +25,23 @@
                 <label>Course Hours: <input type="text" th:value="${course.hours}" th:field="*{hours}"></label>
                 <small th:errors="*{hours}" class="errorMessage"></small>
             </div>
+
+            <div>
+                <label>Course Overview: <textarea th:value="${course.overview}" th:field="*{overview}" rows="5"></textarea></label>
+                <small th:errors="*{overview}" class="errorMessage"></small>
+            </div>
+            <div>
+                <label>Course Audience: <textarea th:value="${course.audience}" th:field="*{audience}" rows="3"></textarea></label>
+                <small th:errors="*{audience}" class="errorMessage"></small>
+            </div>
+            <div>
+                <label>Course Prerequisites: <textarea th:value="${course.prerequisites}" th:field="*{prerequisites}" rows="3"></textarea></label>
+                <small th:errors="*{prerequisites}" class="errorMessage"></small>
+            </div>
+            <div>
+                <label>Course Outline: <textarea th:value="${course.outline}" th:field="*{outline}" rows="3"></textarea></label>
+                <small th:errors="*{outline}" class="errorMessage"></small>
+            </div>
             <div>
                 <label>Semester:
                     <select th:field="*{semester.id}">

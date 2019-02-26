@@ -4,7 +4,6 @@ import com.clive.model.User;
 import com.clive.service.MenuService;
 import com.clive.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -31,9 +30,5 @@ public class MenuFilter extends OncePerRequestFilter {
         }
 
         filterChain.doFilter(httpServletRequest, httpServletResponse);
-    }
-
-    public void setMenuService(MenuService menuService) {
-        this.menuService = menuService;
     }
 }
